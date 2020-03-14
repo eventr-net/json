@@ -5,13 +5,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="EventR" Version="1.0.0" />
-    <PackageReference Include="EventR.Spec" Version="1.0.0" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\..\src\EventR.Json\EventR.Json.csproj" />
-    <!--<PackageReference Include="EventR.Spec" Version="$(EventrCoreVersion)" />-->
+    <PackageReference Include="EventR" Version="$(EventrCoreVersion)" />
+    <PackageReference Include="EventR.Spec" Version="$(EventrCoreVersion)" />
   </ItemGroup>
 
 </Project>

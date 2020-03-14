@@ -5,8 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <!--<PackageReference Include="EventR.Abstractions" Version="$(EventrCoreVersion)" />-->
-    <PackageReference Include="EventR.Abstractions" Version="1.0.0" />
+    <PackageReference Include="EventR.Abstractions" Version="$(EventrCoreVersion)" />
     <PackageReference Include="System.Text.Json" Version="$(SystemTextJsonVersion)" />
   </ItemGroup>
 
