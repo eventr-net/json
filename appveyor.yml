@@ -1,0 +1,21 @@
+version: '{build}'
+max_jobs: 1
+image: Visual Studio 2019
+clone_folder: C:\projects\json
+init:
+- cmd: >-
+    git config --global core.autocrlf true
+
+    mkdir C:\NugetPackages 2>NUL
+
+    mkdir C:\WorkSpace 2>NUL
+clone_script:
+- cmd: git clone -q --depth=1 --recurse-submodules --branch=%APPVEYOR_REPO_BRANCH% https://github.com/%APPVEYOR_REPO_NAME%.git %APPVEYOR_BUILD_FOLDER%
+environment:
+  NUGET_PACKAGES: C:\NugetPackages
+  DOTNET_WORKSPACE: C:\WorkSpace
+cache: C:\NugetPackages
+build_script:
+- ps: ./build.ps1
+test_script:
+- cmd: dotnet test test\EventR.Json.Tests\EventR.Json.Tests.csproj -c Release --no-build --no-restore --nologo --test-adapter-path:. --logger:Appveyor
