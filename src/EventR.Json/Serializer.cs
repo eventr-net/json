@@ -4,7 +4,6 @@
     using EventR.Abstractions.Exceptions;
     using System;
     using System.IO;
-    using System.Reflection;
     using System.Text;
     using System.Text.Json;
 
@@ -48,7 +47,7 @@
 
                     var concreteType = eventFactory.GetConcreteType(evtType);
                     var bytes = JsonSerializer.SerializeToUtf8Bytes(evt, concreteType, options);
-                    var s = Encoding.UTF8.GetString(bytes);
+                    ////var s = Encoding.UTF8.GetString(bytes);
                     stream.Write(bytes, 0, bytes.Length);
 
                     commit.PayloadLayout.Add(position, bytes.Length, evtTypeId);
@@ -77,7 +76,7 @@
             }
 
             var ns = type.Namespace != null ? $"{type.Namespace}." : string.Empty;
-            return $"{ns}{t.Name}, {t.GetTypeInfo().Assembly.GetName().Name}";
+            return $"{ns}{t.Name}, {t.Assembly.GetName().Name}";
         }
 
         private Type GetTypeFromTypeId(string typeId, Commit commit)
